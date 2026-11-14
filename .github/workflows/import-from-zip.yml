@@ -18,45 +18,45 @@ jobs:
           ref: replace-site-from-zip
           fetch-depth: 0
 
-      - name: Unpack archive safely and replace repository files
+      - name: Unpack archive and replace repository files
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path, PurePosixPath
           import shutil, tempfile, zipfile
 
-          archive = Path("hammi-portfolio-github.zip")
-          if not archive.is_file():
-              raise SystemExit("Source archive was not found at repository root.")
+          repo = Path.cwd()
+          archive = repo / "hammi-portfolio-github.zip"
+          importer = repo / ".github/workflows/import-from-zip.yml"
+          importer_bytes = importer.read_bytes()
 
           with zipfile.ZipFile(archive) as zf:
               infos = [i for i in zf.infolist() if i.filename and not i.is_dir()]
-              if not infos:
-                  raise SystemExit("The ZIP archive contains no files.")
-              if len(infos) > 5000 or sum(i.file_size for i in infos) > 250_000_000:
-                  raise SystemExit("Archive exceeds safe extraction limits.")
-
+              if not infos or len(infos) > 5000 or sum(i.file_size for i in infos) > 250_000_000:
+                  raise SystemExit("Archive is empty or exceeds safe extraction limits.")
               parsed = []
               for info in infos:
                   p = PurePosixPath(info.filename)
                   if p.is_absolute() or ".." in p.parts:
                       raise SystemExit(f"Unsafe archive path: {info.filename}")
                   parsed.append((info, p))
-
               top = {p.parts[0] for _, p in parsed if p.parts}
               strip_root = len(top) == 1 and all(len(p.parts) > 1 for _, p in parsed)
-
               temp = Path(tempfile.mkdtemp(prefix="site-archive-"))
               for info, p in parsed:
                   parts = p.parts[1:] if strip_root else p.parts
                   if not parts:
+                      continue
+                  rel = PurePosixPath(*parts).as_posix()
+                  # This workflow is retained for the import commit. The deployment
+                  # workflow is added separately using the repository's GitHub App.
+                  if rel == ".github/workflows/deploy.yml":
                       continue
                   target = temp.joinpath(*parts)
                   target.parent.mkdir(parents=True, exist_ok=True)
                   with zf.open(info) as src, target.open("wb") as dst:
                       shutil.copyfileobj(src, dst)
 
-          repo = Path.cwd()
           for child in repo.iterdir():
               if child.name == ".git":
                   continue
@@ -69,13 +69,14 @@ jobs:
               shutil.move(str(child), str(repo / child.name))
           shutil.rmtree(temp)
 
-          files = sorted(p.relative_to(repo).as_posix() for p in repo.rglob("*") if p.is_file())
-          print(f"Extracted {len(files)} files:")
+          importer_path = repo / ".github/workflows/import-from-zip.yml"
+          importer_path.parent.mkdir(parents=True, exist_ok=True)
+          importer_path.write_bytes(importer_bytes)
+
+          files = sorted(p.relative_to(repo).as_posix() for p in repo.rglob("*") if p.is_file() and ".git" not in p.parts)
+          print(f"Extracted {len(files)} project files")
           for name in files[:150]:
               print(" -", name)
-          if len(files) > 150:
-              print(f" ... and {len(files)-150} more")
-          print("Root files:", [p.name for p in repo.iterdir()])
           PY
 
       - name: Commit extracted site
