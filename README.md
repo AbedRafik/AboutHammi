@@ -18,20 +18,6 @@ The website includes:
 - Dark and light themes
 - A responsive interface designed for desktop and mobile screens
 
-## My work
-
-I work mainly on mobile applications with React Native. I also build backend services using Python, Django, and REST APIs.
-
-Some of the projects featured here include:
-
-- **Fasty**, a delivery application for quick and simple order requests
-- **Player**, a practical media player
-- **VitalFlow**, an application for managing and tracking healthy habits
-- **learn-python**, a project focused on Python fundamentals
-- **HabitsReminder**, an application for daily habit reminders
-
-You can find more of my work on [GitHub](https://github.com/hammi2) and explore my published application on [Google Play](https://play.google.com/store/apps/details?id=app.ehjez.com).
-
 ## Technologies
 
 The portfolio is built with:
