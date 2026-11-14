@@ -1,0 +1,2049 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
+  /* Achievement livery for the Konami easter egg only: gold and a rare
+     purple, never part of the site's regular palette. */
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-rare: var(--rare);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--ff-sans);
+  --font-display: var(--ff-display);
+  --font-mono: var(--ff-mono);
+  --font-pixel: var(--ff-pixel);
+}
+
+:root {
+  /* Apple Liquid Glass, light appearance, tuned to the fog artwork:
+     silver-white ground, frosted white glass, system purple accent (the
+     fog's own highlight is blush #f0b4be over a deep crimson
+     midtone #6d0a1e), near-black ink. Blue is retired from the site
+     chrome; it survives only inside the true brand colors of the social
+     icons. */
+  --radius: 1.25rem;
+
+  /* Motion curves (Emil Kowalski's design engineering skill): strong
+     ease-out for anything entering or responding, ease-in-out for on-screen
+     travel, a gentle spring for playful lifts. Never ease-in for UI. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Alexandria (self-hosted) carries the display voice and Readex Pro
+     the body: a single contemporary identity across Arabic and Latin,
+     leading every chain on every platform. */
+  --ff-sans: "Readex Pro", -apple-system, BlinkMacSystemFont, "SF Pro Text", ui-sans-serif, system-ui, sans-serif;
+  --ff-display: "Alexandria", "Readex Pro", -apple-system, BlinkMacSystemFont, "SF Pro Display", ui-sans-serif, system-ui, sans-serif;
+  --ff-mono: "SF Mono", ui-monospace, "JetBrains Mono", monospace;
+
+  --background: #f2f2f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #b2122e;
+  --primary-foreground: #ffffff;
+  --secondary: rgb(120 120 128 / 0.08);
+  --secondary-foreground: #1d1d1f;
+  --muted: rgb(120 120 128 / 0.08);
+  --muted-foreground: #474750;
+
+  /* The cursor aura: a soft violet presence-light that follows the
+     pointer across the page (see .cursor-aura). */
+  --aura: rgb(178 18 46 / 0.22);
+  --grain-o: 0.05;
+  --accent: rgb(178 18 46 / 0.10);
+  --accent-foreground: #b2122e;
+  --gold: #9d1030;
+  --gold-soft: rgb(157 16 48 / 0.14);
+  --rare: #9d1030;
+  --ff-pixel: "SF Mono", "Alexandria", ui-monospace, monospace;
+  --brand: #b2122e;
+  --brand-strong: #8a0d22;
+  --brand-foreground: #ffffff;
+  --brand-soft: rgb(178 18 46 / 0.10);
+  /* One step deeper than the system red-pink: store badges set 11px
+     text on a pink wash, and the brighter tone measured under 4.5:1
+     in light mode. */
+  --pink: #a80f2d;
+  --pink-soft: rgb(168 15 45 / 0.12);
+  --destructive: #ff3b30;
+  --border: rgb(60 60 67 / 0.14);
+  --input: rgb(60 60 67 / 0.14);
+  --ring: #b2122e;
+  --chart-1: #b2122e;
+  --chart-2: #c9122e;
+  --chart-3: #d6249e;
+  --chart-4: #d1355c;
+  --chart-5: #1d1d1f;
+  --sidebar: #f2f2f7;
+  --sidebar-foreground: #1d1d1f;
+  --sidebar-primary: #b2122e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(120 120 128 / 0.08);
+  --sidebar-accent-foreground: #1d1d1f;
+  --sidebar-border: rgb(60 60 67 / 0.14);
+  --sidebar-ring: #b2122e;
+
+  /* Glass material, light: bright frosted white, strong top rim because the
+     light source sits above, soft ambient lift below. */
+  --glass-tint: rgb(255 255 255 / 0.62);
+  --glass-fog-tint: rgb(207 138 237 / 0.3);
+  --glass-border: rgb(255 255 255 / 0.65);
+  --glass-blur: 18px;
+  --glass-saturate: 170%;
+  --glass-shadow:
+    0 18px 40px -12px rgb(50 15 75 / 0.18),
+    0 2px 8px -2px rgb(50 15 75 / 0.06),
+    inset 0 1px 1px rgb(255 255 255 / 0.9),
+    inset 0 -1px 1px rgb(60 60 67 / 0.05),
+    inset 1px 0 1px rgb(255 255 255 / 0.4),
+    inset -1px 0 1px rgb(255 255 255 / 0.4);
+  --sheen-1: 0.5;
+  --sheen-2: 0.12;
+  --spot-glow: rgb(178 18 46 / 0.14);
+
+  /* Dissipating fog halo: what a glass panel wears while it materializes,
+     and the glow that hugs the hero name. */
+  --fog-halo: rgb(178 18 46 / 0.42);
+  --fog-halo-soft: rgb(178 18 46 / 0.2);
+  --halo-rest: rgb(178 18 46 / 0.3);
+
+  /* Page-end mist: the soft fog the page dissolves into at its very
+     bottom edge (see .page-mist in the footer). */
+  --mist-glow: rgb(178 18 46 / 0.2);
+  --mist-veil: rgb(207 138 237 / 0.24);
+  --mist-edge: rgb(247 224 229 / 0.92);
+
+  /* Glossy pill CTA, the apple.com recipe: a top-to-bottom purple
+     gradient with an inner top highlight. */
+  --gloss-top: #ef7489;
+  --gloss-bottom: #9c1028;
+
+  /* Display gradient: the fog's own colors, electric violet through deep
+     purple and system purple to pink. */
+  --grad-a: #6d0a1e;
+  --grad-b: #96102a;
+  --grad-c: #b2122e;
+  --grad-d: #c9122e;
+
+  --glow-brand: rgb(178 18 46 / 0.4);
+}
+
+.dark {
+  /* Dark appearance: pure black ground like the fog's base, vivid system
+     purple accents. The font chains are NOT redefined here: the :root
+     chains (Alexandria + Readex Pro, Arabic-first) serve both
+     appearances. */
+  --radius: 1.25rem;
+
+  --background: #000000;
+  --foreground: #f2f2f7;
+  --card: #1c1c1e;
+  --card-foreground: #f2f2f7;
+  --popover: #1c1c1e;
+  --popover-foreground: #f2f2f7;
+  --primary: #ff5266;
+  --primary-foreground: #ffffff;
+  --secondary: rgb(120 120 128 / 0.18);
+  --secondary-foreground: #f2f2f7;
+  --muted: rgb(120 120 128 / 0.18);
+  /* One step brighter than the stock gray: the fog's luminous violet
+     patches sit behind much of the muted copy, so the text needs more
+     headroom to stay clearly readable in dark mode. */
+  --muted-foreground: #c7c7d2;
+
+  --aura: rgb(255 82 102 / 0.28);
+  --grain-o: 0.07;
+  --accent: rgb(255 82 102 / 0.16);
+  --accent-foreground: #ff8494;
+  --brand: #ff5266;
+  --brand-strong: #ff8494;
+  --brand-foreground: #ffffff;
+  --gold: #ff8a70;
+  --gold-soft: rgb(255 138 112 / 0.16);
+  --rare: #ff5266;
+  --brand-soft: rgb(255 82 102 / 0.16);
+  --pink: #ff4d64;
+  --pink-soft: rgb(255 77 100 / 0.16);
+  --destructive: #ff453a;
+  --border: rgb(255 255 255 / 0.12);
+  --input: rgb(255 255 255 / 0.12);
+  --ring: #ff8494;
+  --chart-1: #ff5266;
+  --chart-2: #ff4d64;
+  --chart-3: #ff7a8a;
+  --chart-4: #ff8494;
+  --chart-5: #f2f2f7;
+  --sidebar: #000000;
+  --sidebar-foreground: #f2f2f7;
+  --sidebar-primary: #ff5266;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgb(120 120 128 / 0.18);
+  --sidebar-accent-foreground: #f2f2f7;
+  --sidebar-border: rgb(255 255 255 / 0.12);
+  --sidebar-ring: #ff5266;
+
+  /* Glass material, dark: a faint white film over black, rim light along
+     the top edge, deeper shadow for thickness. */
+  --glass-tint: rgb(255 255 255 / 0.08);
+  --glass-fog-tint: rgb(159 10 42 / 0.32);
+  --glass-border: rgb(255 255 255 / 0.14);
+  --glass-blur: 16px;
+  --glass-saturate: 180%;
+  --glass-shadow:
+    0 20px 48px -16px rgb(0 0 0 / 0.55),
+    0 2px 10px -4px rgb(0 0 0 / 0.4),
+    inset 0 1px 1px rgb(255 255 255 / 0.4),
+    inset 0 -1px 1px rgb(255 255 255 / 0.12),
+    inset 1px 0 1px rgb(255 255 255 / 0.08),
+    inset -1px 0 1px rgb(255 255 255 / 0.08);
+  --sheen-1: 0.26;
+  --sheen-2: 0.06;
+  --spot-glow: rgb(255 255 255 / 0.10);
+
+  --fog-halo: rgb(255 82 102 / 0.45);
+  --fog-halo-soft: rgb(255 82 102 / 0.22);
+  --halo-rest: rgb(255 82 102 / 0.38);
+
+  /* Page-end mist, dark: the black fog's own violet depth. */
+  --mist-glow: rgb(255 82 102 / 0.22);
+  --mist-veil: rgb(159 10 42 / 0.26);
+  --mist-edge: rgb(26 3 10 / 0.92);
+
+  --gloss-top: #ff8a94;
+  --gloss-bottom: #c01338;
+
+  /* The aurora's violet anchors are deliberately one step brighter
+     than pure hue would ask: the living fog paints luminous violet
+     patches BEHIND the name, and the measured on-fog contrast of the
+     darker stops sank near the large-text limit. Brighter anchors
+     hold the gradient readable across the brightest patches. */
+  --grad-a: #d84a60;
+  --grad-b: #ea3d55;
+  --grad-c: #ff5266;
+  --grad-d: #ff8a70;
+
+  --glow-brand: rgb(255 82 102 / 0.45);
+}
+
+/* Arabic edition needs no font-chain overrides: Alexandria and Readex
+   Pro are Arabic-first faces with full Latin support, so one chain
+   serves both languages. Arabic still gets roomier leading and zero
+   letter-spacing (rules below). */
+
+@layer base {
+  * {
+    border-color: var(--border);
+    /* No tap halo on Android and no iOS callout: taps answer with the
+       press scale instead. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Room for the floating glass capsule plus breathing space below it. */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+    -webkit-touch-callout: none;
+  }
+
+  /* ---------------------------------------------------------------- *
+   * Custom scrollbar: a slim frosted rail. The thumb is a translucent
+   * brand-tinted capsule floating on a fully clear track; the wide
+   * transparent border with background-clip is what makes it read as a
+   * thin glass sliver instead of a solid system bar, and the brand tint
+   * keeps it on identity in both appearances. Firefox gets the matching
+   * thin scrollbar-color pair.
+   * ---------------------------------------------------------------- */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--brand) 55%, transparent) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    background-color: color-mix(in oklab, var(--brand) 55%, transparent);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklab, var(--brand) 85%, transparent);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--ff-sans);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* The page is an interface, not a document: text selection is off. */
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  ::selection {
+    background-color: var(--brand);
+    color: var(--brand-foreground);
+  }
+
+  :focus-visible {
+    /* Ring over living fog: thick enough to survive violet haze in
+       both themes, offset far enough to never merge with the rim
+       light of the glass underneath. */
+    outline: 2.5px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Arabic script: letter spacing breaks glyph joining, so it is zeroed
+   everywhere, and display lines get roomier leading. */
+html[lang="ar"] * {
+  letter-spacing: 0;
+}
+
+html[lang="ar"] .font-display {
+  line-height: 1.35;
+}
+
+html[lang="ar"] .leading-tight {
+  line-height: 1.35;
+}
+
+/* ------------------------------------------------------------------ *
+ * Liquid Glass material, in tiers (see layout.tsx for the physics).
+ *
+ * The stack on every glass surface:
+ *   element  frosted tint + backdrop blur/saturation + anisotropic rim
+ *            (top rim brightest, glass catches light from above)
+ *   ::after  specular sheen sweeping from the top-start corner AND the
+ *            edge lensing: an SVG displacement filter bends the backdrop
+ *            around the panel boundary (refraction), the trait blur
+ *            alone cannot fake. Cards use #liquid-lens-lite (one pass);
+ *            .lens-full hero surfaces (header, loader) use the full
+ *            chain (#liquid-lens: dispersion + specular); tiles and
+ *            chips deliberately skip the lens (invisible at their size,
+ *            real raster cost per living-fog frame).
+ *   ::before pointer-tracked internal illumination.
+ * Both pseudo-elements sit at z-index -1 under the content, so text is
+ * never part of their backdrop and stays crisp. Critically, nothing
+ * ever animates `filter` on a glass surface: a filter would make the
+ * element its own backdrop root and silently switch the material off,
+ * so panels would appear flat and only turn glassy afterwards. Panels
+ * enter view with the material already live, wearing a violet fog
+ * halo (box-shadow) that dissipates as they settle.
+ * ------------------------------------------------------------------ */
+.lg {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--glass-tint);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+/* The sheen layer also carries the edge lensing, permanently: light
+   bends around the panel boundary from the first visible frame, not
+   only under the pointer. Cards refract through the lite lens
+   (#liquid-lens-lite, one displacement pass); hero surfaces wearing
+   .lens-full (the header capsule, the loader capsule) get the full
+   physics chain (#liquid-lens: chromatic dispersion + specular).
+   Chromium resolves the SVG references; every other engine treats the
+   unresolvable reference as invalid and drops just this declaration,
+   keeping the blur on the element itself. */
+.lg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / var(--sheen-1)) 0%,
+    rgb(255 255 255 / var(--sheen-2)) 30%,
+    transparent 58%
+  );
+  -webkit-backdrop-filter: url(#liquid-lens-lite);
+  backdrop-filter: url(#liquid-lens-lite);
+}
+
+/* The hero material: full dispersion + specular, reserved for the few
+   always-seen surfaces that can afford it (see the perf note in
+   layout.tsx - the full chain costs ~4x one pass, and there are ~70
+   glass surfaces on the page). */
+.lens-full::after {
+  -webkit-backdrop-filter: url(#liquid-lens);
+  backdrop-filter: url(#liquid-lens);
+}
+
+/* Tiles and chips skip the lens entirely: at 36-44px a displacement
+   band is a handful of invisible pixels, but each SVG filter in a
+   backdrop costs real raster time on every living-fog frame - dozens
+   of them were costing more than every big card combined. Their
+   element-level frost (the real blur) and this sheen stay. Skills
+   labels are plain text (no ::after, no glass at all). */
+.tile.lg::after {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* Pointer-tracked internal illumination: a soft glow that follows the
+   cursor under the content. The lens lives on ::after, so this layer
+   is pure light. */
+.lg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    var(--spot-glow),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+}
+
+.lg:hover::before,
+.lg:focus-visible::before {
+  opacity: 1;
+}
+
+/* Interactive glass summons the fog: pressable glass surfaces carry a
+   soft violet haze around them while engaged, fading in and out with
+   the same ease as the material itself. This is a box-shadow layer
+   (never a filter), so the backdrop material stays live throughout.
+   The transition lives here (not only inline in tiltGlass) so glass
+   without the tilt still dissolves smoothly. It must be COMPOSABLE:
+   .lg.press surfaces usually also carry .tilt (inline transform) and
+   .lift (hover translate), so the property list carries all three
+   channels - otherwise the lift snaps instead of springing while the
+   halo eases. */
+.lg.press {
+  transition:
+    transform 0.18s var(--ease-out),
+    translate 0.35s var(--ease-spring),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.lg.press:hover,
+.lg.press:focus-visible {
+  box-shadow:
+    var(--glass-shadow),
+    0 0 42px 9px var(--fog-halo-soft);
+}
+
+/* Pressing glass squeezes the fog: the halo flashes in fast (a short
+   transition on the active state only), then relaxes back through the
+   slow hover ease. Tactile feedback without touching the material. */
+.lg.press:active {
+  box-shadow:
+    var(--glass-shadow),
+    0 0 34px 8px var(--fog-halo-soft);
+  transition-duration: 0.1s;
+}
+
+/* Panels that appear outside the entrance/reveal waves (dropdown
+   menus, popovers) wear the dissipating fog every time they mount: the
+   same fog-first materialization vocabulary as the page itself. */
+.fog-in {
+  animation: glass-fog 0.7s var(--ease-out) backwards;
+}
+
+/* Browsers without backdrop-filter at all get near-solid glass. */
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .lg {
+    background-color: rgb(255 255 255 / 0.94);
+  }
+  .dark .lg {
+    background-color: rgb(28 28 30 / 0.94);
+  }
+}
+
+/* Honors the OS "reduce transparency" setting: opaque surfaces, no fog
+   scene, no lens. The lens lives on ::after (and .lens-full::after) -
+   killing it on ::before (which never has one) would leave every card
+   refracting over an opaque panel. */
+@media (prefers-reduced-transparency: reduce) {
+  .lg {
+    background-color: rgb(255 255 255 / 0.96);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .dark .lg {
+    background-color: rgb(24 24 26 / 0.96);
+  }
+  .lg::after,
+  .lens-full::after {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .backdrop {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Glossy pill button, the apple.com CTA recipe: vertical purple
+ * gradient, inner top highlight, soft colored lift, gel-like spring on
+ * hover.
+ * ------------------------------------------------------------------ */
+.btn-glossy {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  background-image: linear-gradient(180deg, var(--gloss-top), var(--gloss-bottom));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    inset 0 0 0 1px rgb(0 0 0 / 0.04),
+    0 10px 24px -8px var(--glow-brand);
+  transition:
+    transform 0.25s var(--ease-spring),
+    box-shadow 0.25s var(--ease-out),
+    filter 0.25s var(--ease-out);
+}
+
+/* Pointer-tracked sheen: the same specular language as the glass
+   panels (a radial glow at --spot-x / --spot-y, written by
+   trackGlassPointer), so glossy buttons light up from the point of
+   contact too. */
+.btn-glossy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    150px circle at var(--spot-x, 50%) var(--spot-y, 30%),
+    rgb(255 255 255 / 0.32),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+.btn-glossy:hover::before,
+.btn-glossy:focus-visible::before {
+  opacity: 1;
+}
+
+.btn-glossy:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08) brightness(1.03);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    inset 0 0 0 1px rgb(0 0 0 / 0.04),
+    0 14px 30px -8px var(--glow-brand);
+}
+
+.btn-glossy:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ------------------------------------------------------------------ *
+ * Icon tiles: LIQUID GLASS app icons. Every tile wears the .lg frost
+ * (element-level blur + tint + hairline) and the sheen; the SVG lens
+ * is deliberately off at this size (see .tile.lg::after above). The
+ * gradient is translucent so the living fog glows through the color
+ * and the tile reads as a slab of tinted glass rather than a painted
+ * chip - glass stacked on glass, since tiles sit inside glass cards.
+ * Light mode runs the fills near-opaque: white glyphs on thin color
+ * over a pale fog smudge into background, so the color must be dense
+ * enough to carry its own contrast.
+ *
+ * Two families:
+ *   .tile-wine / -lilac / -pink / -magenta / -slate are the site's
+ *   own system palette, drawn strictly from the two fog palettes
+ *   (wine, rose, blush, crimson over neutrals: no blue, no green,
+ *   no warm oranges). Each gradient is theme-aware: denser over the
+ *   white fog to keep the glyph legible, brighter and more luminous
+ *   over the black fog, so the identity shifts with the background.
+ *   .tile-github / -linkedin / -instagram / -facebook / -discord are
+ *   the networks' REAL brand colors, because recognizable marks belong
+ *   in their own livery.
+ * ------------------------------------------------------------------ */
+.tile {
+  color: #fff;
+  /* The .lg glass hairline is near-opaque white in light mode and
+     reads as a stray bright line along the tile's bottom edge. The
+     top edge keeps its specular highlight; the bottom edge stays
+     clean, defined by the drop shadow alone. */
+  border-bottom-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    inset 0 -1px 2px rgb(0 0 0 / 0.12),
+    0 5px 12px -4px rgb(40 5 60 / 0.35);
+}
+
+
+
+.tile-rose {
+  background-image: linear-gradient(180deg, rgb(244 156 172 / 0.9), rgb(198 54 88 / 0.94));
+}
+
+.tile-blush {
+  background-image: linear-gradient(180deg, rgb(255 112 132 / 0.9), rgb(235 40 78 / 0.94));
+}
+
+.tile-crimson {
+  background-image: linear-gradient(180deg, rgb(238 70 96 / 0.9), rgb(180 16 58 / 0.94));
+}
+
+.tile-slate {
+  background-image: linear-gradient(180deg, rgb(158 158 168 / 0.9), rgb(88 88 98 / 0.94));
+}
+
+/* Dark fog: the same family, luminous fills so the tiles glow out of
+   the black fog instead of sinking into it; the frost under the
+   gradient still lets the fog breathe through the color. */
+.dark .tile-wine {
+  background-image: linear-gradient(180deg, rgb(209 155 255 / 0.85), rgb(164 76 224 / 0.88));
+}
+
+.dark .tile-rose {
+  background-image: linear-gradient(180deg, rgb(226 186 255 / 0.85), rgb(192 126 245 / 0.88));
+}
+
+.dark .tile-blush {
+  background-image: linear-gradient(180deg, rgb(255 117 145 / 0.85), rgb(255 77 100 / 0.88));
+}
+
+.dark .tile-crimson {
+  background-image: linear-gradient(180deg, rgb(255 119 207 / 0.85), rgb(224 53 170 / 0.88));
+}
+
+.dark .tile-slate {
+  background-image: linear-gradient(180deg, rgb(185 185 194 / 0.85), rgb(116 116 127 / 0.88));
+}
+
+/* Social networks in their true brand colors (identical in both
+   themes: brand colors do not follow the site mode), just translucent
+   enough to stay part of the glass stack. */
+.tile-github {
+  background-image: linear-gradient(180deg, rgb(60 66 74 / 0.88), rgb(24 29 34 / 0.92));
+}
+
+.tile-linkedin {
+  background-image: linear-gradient(180deg, rgb(27 143 224 / 0.88), rgb(10 102 194 / 0.92));
+}
+
+.tile-instagram {
+  background-image: linear-gradient(
+    135deg,
+    rgb(254 218 117 / 0.88) 0%,
+    rgb(250 126 30 / 0.88) 25%,
+    rgb(214 41 118 / 0.88) 55%,
+    rgb(150 47 191 / 0.88) 80%,
+    rgb(79 91 213 / 0.88) 100%
+  );
+}
+
+.tile-facebook {
+  background-image: linear-gradient(180deg, rgb(59 147 247 / 0.88), rgb(21 103 208 / 0.92));
+}
+
+.tile-discord {
+  background-image: linear-gradient(180deg, rgb(124 134 245 / 0.88), rgb(88 101 242 / 0.92));
+}
+
+/* ------------------------------------------------------------------ *
+ * Backdrop. A living Vanta.fog WebGL scene (three.js r134, vendored
+ * locally) fills the viewport: purple fog over black in dark mode,
+ * lilac fog over white in light mode, both reacting to the pointer.
+ * There is no static image anywhere: the base under the canvas is a
+ * pure-CSS fog wash drawn from the live scene's exact palette, so the
+ * very first paint already reads as the fog (and stays that way for
+ * no-WebGL, no-JS, and reduced-motion visitors). The canvas fades in
+ * over the gradient the moment its first frame renders
+ * (html[data-fog-live], set by backdrop.tsx) - the background never
+ * "swaps" from a frozen picture to a live one; it comes alive in
+ * place, during the loader, which is itself transparent glass. A
+ * theme-aware scrim keeps text contrast while letting the fog stay the
+ * hero of the page.
+ * ------------------------------------------------------------------ */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--background);
+  /* Light fog in CSS: blush highlight (0xf0b4be) and deep midtone
+     (0x5a00ff) washes over the pale base, echoing the live recipe. */
+  background-image:
+    radial-gradient(120% 90% at 18% 8%, rgb(207 138 237 / 0.32), transparent 60%),
+    radial-gradient(130% 100% at 85% 28%, rgb(90 0 255 / 0.08), transparent 55%),
+    radial-gradient(120% 110% at 50% 105%, rgb(207 138 237 / 0.15), transparent 65%);
+}
+
+.dark .backdrop {
+  /* Dark fog in CSS: the 0x9f0a2a highlight over near-black, with a
+     faint grey midtone breath (0x64) in the upper right. */
+  background-image:
+    radial-gradient(120% 90% at 18% 8%, rgb(159 10 42 / 0.34), transparent 60%),
+    radial-gradient(130% 100% at 85% 28%, rgb(110 110 110 / 0.07), transparent 55%),
+    radial-gradient(120% 110% at 50% 105%, rgb(159 10 42 / 0.26), transparent 65%);
+}
+
+.vanta-host {
+  position: absolute;
+  inset: 0;
+  /* The canvas materializes: invisible until its first real frame,
+     then a slow ease over the CSS fog below. A hard pop here would be
+     its own image-to-scene swap, exactly what this layer must avoid. */
+  opacity: 0;
+  transition: opacity 1.1s ease-out;
+}
+
+html[data-fog-live] .vanta-host {
+  opacity: 1;
+}
+
+.vanta-host canvas {
+  display: block;
+}
+
+.backdrop-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.5),
+    rgb(255 255 255 / 0.38) 45%,
+    rgb(255 255 255 / 0.48)
+  );
+}
+
+.dark .backdrop-scrim {
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.38),
+    rgb(0 0 0 / 0.24) 45%,
+    rgb(0 0 0 / 0.42)
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * Skills rail: the tech ticker runs on a full-bleed frosted shelf.
+ * The band itself is the ONE glass panel, so the living fog visibly
+ * blurs through it in BOTH appearances. The labels on it are plain
+ * text with no fill of their own: per-chip glass read as small cards
+ * inside a big card, and a moving row of backdrop filters re-rasters
+ * every chip on every frame over the living fog (the marquee lag).
+ * The band's edges fade through a mask so labels melt into the rail
+ * instead of clipping hard at the viewport edge.
+ * ------------------------------------------------------------------ */
+.skills-rail {
+  border-radius: 0;
+  border-inline: none;
+  padding-block: 15px;
+}
+
+/* Plain text labels riding the frosted shelf. Contrast comes from the
+   ink color over the rail's frost, not from a fill of their own. */
+.skills-chip {
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* Chips materialize in a quick staggered ripple as the rail arrives
+   (the reveal adds .is-in; each chip carries its own --chip-i). Pure
+   opacity/transform: cheap by design, nothing here ever needs a
+   raster. */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+/* A full-bleed shelf rises flat (no 3D tilt: the rotation reads as a
+   skew on an element this wide) and from slightly further down. */
+.reveal.is-armed.reveal-shelf {
+  transform: translateY(26px);
+}
+
+/* Marquee edge fade as a mask instead of overlay gradients, so nothing
+   paints over the fog scene. */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 13%, black 87%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 13%, black 87%, transparent);
+}
+
+/* ------------------------------------------------------------------ *
+ * App loader. Present in the markup but only ever displayed when JS
+ * runs (html.js, set by the boot script before first paint), so a
+ * no-JS visitor sees the page immediately. The layer is TRANSPARENT:
+ * the living fog initializes and renders behind it while the React
+ * component waits for hydration, fonts, and the scene's first real
+ * frame (all capped), so loading IS watching the fog come alive
+ * through a Liquid Glass capsule - no placeholder image, no post-load
+ * background swap, ever. On release it dissolves (scale + opacity; a
+ * blur would make it a backdrop root and switch the capsule's glass
+ * off mid-dissolve), and only AFTER the dissolve finishes does
+ * data-app-ready arrive (see app-loader.tsx), lifting the site shell
+ * below. The moment data-app-ready exists a non-exiting loader is
+ * hidden by CSS too, so even a dead hydration can never trap the
+ * visitor.
+ * ------------------------------------------------------------------ */
+
+/* The veil itself: while the loader is on screen the page's CONTENT is
+   fully hidden (not just covered). visibility (not opacity) means the
+   subtree is skipped at paint time, so the browser rasterizes ZERO
+   glass panels and lenses during the entire wait - that is the
+   resource win, because glass rasters over the living fog are what
+   loading time is spent on. What stays visible is everything OUTSIDE
+   the shell: the fog scene, the pointer aura, the grain, and the
+   capsule - the loader's backdrop is the real, already-moving
+   background. */
+html.js:not([data-app-ready]) .site-shell {
+  visibility: hidden;
+}
+
+#app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* NOT a curtain: fully transparent, so the living fog (already
+     initializing behind it) renders in full view during the wait. The
+     pointer still moves the fog; the layer only carries the capsule. */
+  background-color: transparent;
+}
+
+html.js #app-loader {
+  display: flex;
+}
+
+/* Reduced-motion visitors never see the loader at all: the React skip
+   only runs after hydration, but this CSS holds from first paint, so
+   nobody watches letter animations they asked the OS to remove. */
+@media (prefers-reduced-motion: reduce) {
+  html.js #app-loader {
+    display: none;
+  }
+}
+
+/* The loader content itself is a Liquid Glass capsule: the site's
+   material (frost, refraction, specular edge glint) previewed while
+   the fog comes alive behind it. */
+.loader-capsule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  border-radius: 28px;
+  padding: 2rem 2.9rem;
+}
+
+.loader-wordmark {
+  display: flex;
+  align-items: center;
+  font-family: var(--ff-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* First visits in Arabic: the SSR'd wordmark is Latin (the server
+   cannot know the visitor's locale), so hold it invisible until React
+   hydrates with the real, joined Arabic wordmark (data-hydrated is set
+   by the loader's first effect; data-lang-ar by the pre-paint locale
+   bootstrap). Without this, the capsule would flash "HAMMI" before
+   turning into "حامي". The capsule, progress, and fog stay visible. */
+html.js[data-lang-ar]:not([data-hydrated]) .loader-wordmark {
+  visibility: hidden;
+}
+
+/* Dead-hydration safety: once the page is released, a loader that is
+   not animating out has no reason to exist. The exiting element is
+   spared so the dissolve can play; everything else is cut immediately. */
+html[data-app-ready] #app-loader:not([data-exiting]) {
+  display: none !important;
+}
+
+/* Each letter materializes out of a blur, staggered left to right,
+   like the page itself will a moment later. */
+.loader-letter {
+  display: inline-block;
+  animation: loader-letter-in 0.55s var(--ease-out) both;
+  animation-delay: var(--letter-d, 0ms);
+}
+
+@keyframes loader-letter-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+.loader-track {
+  width: 10rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background-color: rgb(120 120 128 / 0.2);
+  overflow: hidden;
+}
+
+/* Scale (not width) drives the fill so the bar animates off-layout.
+   The component writes `scale: <progress> 1` inline. */
+.loader-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-image: linear-gradient(90deg, var(--grad-a), var(--grad-c));
+  transform-origin: left center;
+  transition: scale 0.32s var(--ease-out);
+}
+
+#app-loader[data-exiting="true"] {
+  /* 0.36s: the dissolve completes before the shell lifts (the React
+     side waits 400ms), and a shorter exit keeps the whole reveal
+     sequence feeling immediate. */
+  animation: loader-exit 0.36s var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+/* Exit WITHOUT filter: a blur on the loader would make it a backdrop
+   root and switch the capsule's glass material off mid-dissolve (the
+   exact failure mode the material forbids). Opacity + scale alone
+   reads as the material departing just as well. */
+@keyframes loader-exit {
+  to {
+    opacity: 0;
+    scale: 1.045;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-fill {
+    transition: none;
+  }
+  #app-loader[data-exiting="true"] {
+    animation: loader-exit-fade 0.16s ease forwards;
+  }
+}
+
+@keyframes loader-exit-fade {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Typographic voice. The kicker is the section eyebrow: small caps in
+ * the brand violet, bracketed by hairline ticks that fade in from the
+ * edges, with an optional tabular index (01, 02...). Body numbers that
+ * matter (stats, indexes) use tabular figures so they hold their
+ * width. Arabic keeps letter-spacing at zero (above) and gets roomier
+ * leading, which the script needs.
+ * ------------------------------------------------------------------ */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  /* The stronger brand step: at 12px the kicker needs a 4.5:1 ratio,
+     and the base brand tone sits under it in light mode. */
+  color: var(--brand-strong);
+}
+
+.kicker::before,
+.kicker::after {
+  content: "";
+  inline-size: 20px;
+  block-size: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--brand));
+}
+
+.kicker::after {
+  background: linear-gradient(90deg, var(--brand), transparent);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Channels lead ornament: the contact section's channel row opens
+   with a centered small-caps line, bracketed by short fading
+   hairlines in the kicker's vocabulary (one size down). Mirrored
+   gradients keep it symmetric, so the RTL edition mirrors cleanly. */
+.channels-tick {
+  inline-size: 18px;
+  block-size: 1.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--brand-strong));
+}
+
+.channels-tick-end {
+  background: linear-gradient(90deg, var(--brand-strong), transparent);
+}
+
+html[lang="ar"] body {
+  line-height: 1.8;
+}
+
+html[lang="ar"] .leading-relaxed {
+  line-height: 1.95;
+}
+
+html[lang="ar"] .leading-normal {
+  line-height: 1.85;
+}
+
+/* ------------------------------------------------------------------ *
+ * Entrance wave. Elements with .entrance start hidden only while JS is
+ * armed and the page is still unreleased (html.js without
+ * data-app-ready), then rise with a slight 3D tilt the moment the
+ * loader departs: the lead (hero name) travels furthest, supports
+ * follow with shorter motion, each element's delay and distance come
+ * from inline custom props.
+ *
+ * FOG BEFORE APPEARANCE: the rise's opacity is front-loaded (complete
+ * by a third of the travel) while the motion continues to the end, so
+ * glass panels become visible while their fog halo (glass-fog, which
+ * runs longer) is still at full strength: the fog blooms first, the
+ * panel then materializes and settles out of it.
+ *
+ * The animations use fill-mode BACKWARDS, never forwards: once the
+ * wave is done the element returns to its natural styles, which frees
+ * `transform` for the 3D pointer tilt and leaves no animation hold
+ * overriding anything.
+ *
+ * Glass panels never take a filter: they rise with the material
+ * already live and a violet fog halo around them that dissipates
+ * (see glass-fog). The hero name (.entrance-fog, not glass) is the one
+ * element that materializes out of a literal blur with a halo glow.
+ * ------------------------------------------------------------------ */
+html.js:not([data-app-ready]) .entrance {
+  opacity: 0;
+  transform: perspective(1000px) translateY(var(--enter-y, 12px)) rotateX(5deg);
+}
+
+html.js[data-app-ready] .entrance {
+  animation: entrance-rise 0.62s var(--ease-out) backwards;
+  animation-delay: var(--enter-d, 0ms);
+}
+
+@keyframes entrance-rise {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateY(var(--enter-y, 12px)) rotateX(5deg);
+  }
+  /* Visible early: the fog leads, the settle trails. */
+  32% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The hero name: rises like everything else while a literal fog
+   dissolves off it. Its halo is a separate blurred violet copy of the
+   name painted BEHIND the gradient letters (a text-shadow would paint
+   over background-clipped gradient text), breathing out of a stronger
+   glow on arrival and then resting as the permanent halo that hugs
+   the name. */
+html.js:not([data-app-ready]) .entrance-fog {
+  filter: blur(16px);
+}
+
+html.js[data-app-ready] .entrance-fog {
+  animation:
+    entrance-rise 0.7s var(--ease-out) backwards,
+    fog-clear 0.95s var(--ease-out) backwards;
+  animation-delay: var(--enter-d, 0ms), var(--enter-d, 0ms);
+}
+
+@keyframes fog-clear {
+  from {
+    filter: blur(16px);
+  }
+  to {
+    filter: blur(0);
+  }
+}
+
+.hero-halo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: var(--halo-rest);
+  filter: blur(26px);
+  pointer-events: none;
+  user-select: none;
+}
+
+html.js[data-app-ready] .hero-halo {
+  animation:
+    halo-layer-out 1.7s var(--ease-out) backwards,
+    halo-breathe 6.5s ease-in-out infinite alternate;
+  animation-delay:
+    var(--enter-d, 0ms),
+    calc(var(--enter-d, 0ms) + 1.8s);
+}
+
+/* The resting halo breathes: a slow, composited scale/opacity swell
+   (never a filter animation, which would repaint the blurred copy
+   every frame). The from state matches halo-layer-out's end exactly,
+   so the handoff is invisible. */
+@keyframes halo-breathe {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+}
+
+@keyframes halo-layer-out {
+  from {
+    filter: blur(50px);
+    opacity: 1;
+  }
+  to {
+    filter: blur(26px);
+    opacity: 0.9;
+  }
+}
+
+/* Glass panels wear the fog BEFORE they appear: the halo is a
+   box-shadow (never a filter, which would switch the material off) and
+   the panel's own background starts as violet condensation, so a panel
+   first blooms as a wide fog glow, then materializes and settles into
+   clear glass as the fog dissipates. The shadow lists share the glass
+   shadow as their base, so the interpolation stays smooth; the end
+   state matches the resting surface exactly - background through
+   --glass-rest, shadow through --glass-rest-shadow (chips carry an
+   extra rim hairline in their resting shadow, plain panels default to
+   the base glass shadow). */
+@keyframes glass-fog {
+  0% {
+    box-shadow:
+      var(--glass-rest-shadow, var(--glass-shadow)),
+      0 0 78px 20px var(--fog-halo);
+    background-color: var(--glass-fog-tint);
+  }
+  40% {
+    box-shadow:
+      var(--glass-rest-shadow, var(--glass-shadow)),
+      0 0 50px 12px var(--fog-halo);
+    background-color: var(--glass-fog-tint);
+  }
+  100% {
+    box-shadow: var(--glass-rest-shadow, var(--glass-shadow));
+    background-color: var(--glass-rest, var(--glass-tint));
+  }
+}
+
+/* Panels that ARE entrance elements run the rise and the fog halo
+   together; the fog outlasts the rise, so it reads as fog first,
+   appearance after. */
+html.js[data-app-ready] .lg.entrance {
+  animation:
+    entrance-rise 0.62s var(--ease-out) backwards,
+    glass-fog 1.1s var(--ease-out) backwards;
+  animation-delay: var(--enter-d, 0ms), var(--enter-d, 0ms);
+}
+
+/* Panels INSIDE an entering group or a scroll reveal inherit the
+   group's delay through the custom property and fire their fog halo
+   when the group arrives. */
+html.js[data-app-ready] .entrance .lg,
+html.js[data-app-ready] .reveal.is-in .lg {
+  animation: glass-fog 1.1s var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, var(--enter-d, 0ms));
+}
+
+/* Skills labels ripple in one by one (chip-in) as the rail arrives.
+   They are NOT .lg surfaces anymore (plain text on the shelf - see
+   .skills-chip), so they never wear the fog halo; this rule must sit
+   after the generic .lg one above anyway so the cascade stays
+   predictable. The ripple adds its own per-chip stagger on top of the
+   rail's reveal delay. */
+html.js[data-app-ready] .reveal.is-in .skills-chip {
+  animation: chip-in 0.5s var(--ease-out) backwards;
+  animation-delay: calc(var(--rail-d, 0ms) + min(var(--chip-i, 0), 11) * 45ms);
+}
+
+/* ------------------------------------------------------------------ *
+ * BlurText: the text-appearance animation. Each word materializes out
+ * of a blur with a short rise, staggered left to right (right to left
+ * in Arabic, the inline order follows direction).
+ *
+ * Words stay hidden from the moment JS arms the page until their
+ * component arms them (data-in) on first visibility, so a heading can
+ * NEVER flash as settled text before blurring in: the first thing the
+ * eye meets is the blur-in itself. The component arms after the loader
+ * departs, so the hero's words land with the entrance wave.
+ *
+ * Safety valves: without JS the words are simply visible, and if
+ * hydration dies the inline boot script marks html with
+ * data-no-hydration, which un-hides everything at the 5s force
+ * release. Words are plain inline-blocks with real spaces between
+ * them, so wrapping and text-balance keep working. Bidi: an
+ * inline-block is atomic to the paragraph's reordering, so in Arabic
+ * sentences the component merges consecutive Latin words into one
+ * unit (Google Play must never read as Play Google); single words and
+ * mixed Arabic-Latin tokens need no help, their runs resolve
+ * correctly.
+ * ------------------------------------------------------------------ */
+.blur-word {
+  display: inline-block;
+}
+
+html.js .blur-text:not([data-in]) .blur-word {
+  opacity: 0;
+}
+
+/* Dead hydration: the boot fallback released the page, so no component
+   will ever arm; show the text plainly. */
+html.js[data-no-hydration] .blur-text:not([data-in]) .blur-word {
+  opacity: 1;
+}
+
+.blur-text[data-in] .blur-word {
+  animation: blur-word-in 0.5s var(--ease-out) backwards;
+  animation-delay: var(--word-d, 0ms);
+}
+
+@keyframes blur-word-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .entrance,
+  html.js .entrance-fog {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none !important;
+  }
+  html.js[data-app-ready] .entrance .lg,
+  html.js[data-app-ready] .reveal.is-in .lg,
+  html.js[data-app-ready] .lg.entrance {
+    animation: none !important;
+  }
+  .fog-in {
+    animation: none;
+  }
+  html.js .hero-halo {
+    animation: none !important;
+  }
+  html.js .blur-text:not([data-in]) .blur-word {
+    opacity: 1;
+  }
+  .blur-text[data-in] .blur-word {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Tactile interaction states (Emil Kowalski's rules): every pressable
+ * element answers the press with an immediate scale-down; hover lifts
+ * only exist on pointers that can actually hover. The press uses the
+ * native `scale` property and the lift the native `translate` property,
+ * so both compose with the 3D tilt's `transform` instead of fighting
+ * it. The tilt itself is written inline by tiltGlass (see glass.tsx)
+ * and eases through .tilt's short transition for a floating feel.
+ * ------------------------------------------------------------------ */
+.press:active {
+  scale: 0.97;
+}
+
+.tilt {
+  /* Carries both properties so the pointer tilt and the hover fog halo
+     ease together (transition does not merge across rules). */
+  transition:
+    transform 0.18s var(--ease-out),
+    box-shadow 0.45s var(--ease-out);
+}
+
+.lift {
+  transition: translate 0.35s var(--ease-spring);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    translate: 0 -4px;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Display gradient text: the fog's own colors, electric violet through
+ * deep purple and system purple to pink. The stops are theme-aware so
+ * the name keeps contrast in both appearances. The hero name uses the
+ * living variant below; a static fallback class is not needed.
+ * ------------------------------------------------------------------ */
+
+/* ------------------------------------------------------------------ *
+ * Aurora text family: the hero name and its sub-texts wear oversized
+ * gradients that drift along their own axis, so color waves travel
+ * through the glyphs. Only the hue moves: no scale, no opacity, no
+ * breathing, and everything freezes to a static gradient under
+ * reduced motion. The 0% and 100% keyframes match, so the loop point
+ * is invisible.
+ *
+ * The name is the signature (.name-aurora): a wide violet-to-pink
+ * aurora with a NARROW bright band knitted into the gradient. The band
+ * sits near the gradient's middle while the visible window at rest
+ * (background-size 340% shows roughly a third of the strip) holds only
+ * pure color at both ends of the pan, so the light stays off-canvas at
+ * the loop point and crosses the letters once per cycle: a specular
+ * sweep, the same light that glances across the glass panels.
+ *
+ * The sub-texts answer with quieter echoes of the same idea: the role
+ * gets a slow bright pass (.text-shimmer), the intro a faint violet
+ * ink drift (.ink-drift) - the family reads as one light moving
+ * through the whole hero, strongest at the name.
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* In light mode the band must stay DARKER than the pastel stops, or
+     the letters would wash out against a light page; in dark mode a
+     white core reads as pure specular. */
+  --aurora-sheen: #7a0c1e;
+  --shimmer-hi: #c21334;
+  --shimmer-lo: color-mix(in oklab, var(--foreground) 82%, transparent);
+  --ink-a: color-mix(in oklab, var(--foreground) 76%, transparent);
+  --ink-b: color-mix(in oklab, var(--foreground) 60%, var(--brand) 40%);
+}
+
+.dark {
+  --aurora-sheen: #ffffff;
+  --shimmer-hi: #ffffff;
+  /* Dark sub-texts sit directly on the fog, whose bright patches eat
+     contrast that a black-background audit cannot see; the mixes lean
+     harder on the foreground for that reason. */
+  --shimmer-lo: color-mix(in oklab, var(--foreground) 88%, transparent);
+  --ink-a: color-mix(in oklab, var(--foreground) 86%, transparent);
+  --ink-b: color-mix(in oklab, var(--foreground) 66%, var(--grad-c) 34%);
+}
+
+.name-aurora {
+  background-image: linear-gradient(
+    110deg,
+    var(--grad-a) 0%,
+    var(--grad-b) 20%,
+    var(--grad-c) 36%,
+    var(--aurora-sheen) 46%,
+    var(--aurora-sheen) 49%,
+    var(--grad-d) 60%,
+    var(--grad-b) 78%,
+    var(--grad-a) 100%
+  );
+  background-size: 340% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: aurora-pan 8s ease-in-out infinite;
+}
+
+.text-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--shimmer-lo) 28%,
+    var(--shimmer-hi) 46%,
+    var(--shimmer-hi) 49%,
+    var(--shimmer-lo) 67%
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer-pan 7s ease-in-out 0.4s infinite;
+}
+
+.ink-drift {
+  background-image: linear-gradient(
+    100deg,
+    var(--ink-a) 20%,
+    var(--ink-b) 50%,
+    var(--ink-a) 80%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: ink-pan 13s ease-in-out 0.8s infinite;
+}
+
+@keyframes aurora-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ink-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name-aurora,
+  .text-shimmer,
+  .ink-drift {
+    animation: none;
+  }
+}
+
+/* Scroll reveal: content rises with a slight 3D tilt as it enters the
+   viewport. Plain elements (headings, paragraphs) fade and rise; the
+   glass panels among them additionally wear the dissipating fog halo
+   (see glass-fog). No filter is ever applied to a revealing wrapper:
+   it would break the glass material of everything inside it. Visible
+   by default; only when JS arms the element does it start hidden, so
+   no-JS visitors and reduced-motion users see a complete page. */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal.is-armed {
+  opacity: 0;
+  transform: perspective(1000px) translateY(18px) rotateX(4deg);
+  /* Opacity is front-loaded (faster than the motion) so glass panels
+     become visible while their fog halo is still at full strength: the
+     fog leads, the appearance trails. */
+  transition:
+    opacity 0.38s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-armed.is-in {
+  opacity: 1;
+  transform: none;
+  /* Hand the hint back once revealed: a permanent will-change keeps
+     the wrapper on its own compositor layer forever, and a composited
+     ancestor with opacity/transform is a backdrop root that would
+     switch the glass below it off. */
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-armed {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * The page ends in fog. Two stacked mist layers live at the very
+ * bottom of the footer:
+ *   .page-mist sits BELOW the content: it blurs the living fog scene
+ *   behind the footer (a light backdrop blur, mask-faded upward) and
+ *   washes it with a violet glow, so the ground the page stands on
+ *   turns hazy.
+ *   .page-mist-veil sits ABOVE the content: a short gradient veil with
+ *   its own light blur that dissolves the final pixels of the page
+ *   into mist. It only covers the footer's bottom padding, so no text
+ *   ever blurs away mid-line.
+ * Both are purely decorative: aria-hidden, pointer-transparent, and
+ * visible with or without JS (they are plain CSS).
+ * ------------------------------------------------------------------ */
+.page-mist {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 0;
+  height: 170px;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 95% at 50% 100%, var(--mist-glow), transparent 72%),
+    linear-gradient(to top, var(--mist-veil), transparent 88%);
+  -webkit-backdrop-filter: blur(3px) saturate(1.08);
+  backdrop-filter: blur(3px) saturate(1.08);
+  -webkit-mask-image: linear-gradient(to top, black 52%, transparent);
+  mask-image: linear-gradient(to top, black 52%, transparent);
+}
+
+.page-mist-veil {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 20;
+  height: 72px;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--mist-edge), transparent);
+  -webkit-backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
+  -webkit-mask-image: linear-gradient(to top, black 38%, transparent);
+  mask-image: linear-gradient(to top, black 38%, transparent);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .page-mist,
+  .page-mist-veil {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .soft-tint {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .soft-tint::before {
+    display: none;
+  }
+  .nav-halo {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Soft tints: every element whose only effect used to be a flat
+ * translucent color fill (store badges, the active nav pill, arrow
+ * discs, the group chips, hover row fills, the brand dots) now:
+ *   - frosts its backdrop (blur + saturation), and
+ *   - wears a soft color halo that DISSOLVES past its edges (a blurred
+ *     ::before slightly larger than the element), so the boundary is a
+ *     fading blur instead of a hard alpha rectangle.
+ * The halo color follows each element's own tint (--soft-halo).
+ * ------------------------------------------------------------------ */
+.soft-tint {
+  position: relative;
+  isolation: isolate;
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  backdrop-filter: blur(12px) saturate(150%);
+}
+
+.soft-tint::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--soft-halo, var(--brand-soft));
+  filter: blur(9px);
+  opacity: 0.75;
+}
+
+.soft-tint-pink {
+  --soft-halo: var(--pink-soft);
+}
+
+.soft-tint-neutral {
+  --soft-halo: rgb(120 120 128 / 0.14);
+}
+
+/* ------------------------------------------------------------------ *
+ * Selection halo for the ACTIVE header link. The soft tints dissolve
+ * past their edges (a quiet ambient wash), which suits badges but
+ * reads as vague for a navigation state. The active link instead
+ * wears a SELECTION: a frosted blur pill with a defined brand-tinted
+ * fill, a crisp inner hairline, and a tight violet glow, the focus
+ * ring vocabulary, so the current section feels selected rather than
+ * merely tinted.
+ * ------------------------------------------------------------------ */
+.nav-halo {
+  position: relative;
+  isolation: isolate;
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  backdrop-filter: blur(14px) saturate(170%);
+  background: color-mix(in oklab, var(--brand) 20%, transparent);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 82 102 / 0.38),
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    0 10px 26px -12px rgb(159 10 42 / 0.6);
+}
+
+.nav-halo::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--glow-brand), transparent 80%);
+  filter: blur(8px);
+}
+
+/* List rows (project entries, skill groups) are deliberately NOT
+   nested cards: they sit directly on their parent glass panel with
+   nothing but a hover tint (the rows' own hover:bg-brand-soft utility,
+   which works again now that no unlayered resting fill outranks it).
+   A resting fill + blur on every row read as small cards inside a big
+   card, and stacked backdrop filters are expensive per living-fog
+   frame. The parent panel provides all the frost. */
+
+/* Translucent brand dots glow softly, so their edge dissolves into
+   the background instead of stopping at a hard circle. */
+.soft-dot {
+  box-shadow: 0 0 8px 1px var(--brand-soft);
+}
+
+/* ------------------------------------------------------------------ *
+ * Presence accents. The hero glow: a wide, very soft violet haze
+ * behind the hero's center axis, so the name and its halo sit in a
+ * pocket of light rather than on bare fog (paint-only, no filters).
+ * The footer hairline: a violet thread fading at both ends, echoing
+ * the kicker ticks.
+ * ------------------------------------------------------------------ */
+.hero-glow {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  z-index: -1;
+  /* Capped below the viewport width so the centered ellipse never
+     pushes the page into horizontal scroll on phones. */
+  width: min(720px, 96vw);
+  height: 460px;
+  translate: -50% 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--hero-glow), transparent 76%);
+}
+
+html:not(.dark) .hero-glow {
+  --hero-glow: rgb(178 18 46 / 0.1);
+}
+
+.dark .hero-glow {
+  --hero-glow: rgb(255 82 102 / 0.16);
+}
+
+.footer-hair {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(178 18 46 / 0.28) 30%,
+    rgb(255 82 102 / 0.32) 50%,
+    rgb(178 18 46 / 0.28) 70%,
+    transparent
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * Cursor aura: the page answers the pointer with a soft violet
+ * presence-light that trails it everywhere (a lerped follow, see
+ * cursor-aura.tsx). It lives ABOVE the fog scene and BELOW all
+ * content, so it never washes text: instead it glows through the
+ * frosted glass panels, which refract and blur it like any other part
+ * of the backdrop. Pointer devices only; reduced motion never sees it.
+ * ------------------------------------------------------------------ */
+.cursor-aura {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9;
+  /* A small wisp of light rather than a room lamp: it should read as
+     the pointer's own presence, a few centimeters wide on screen. */
+  width: 170px;
+  height: 170px;
+  margin: -85px 0 0 -85px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--aura), transparent 72%);
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-out);
+  will-change: transform;
+}
+
+.cursor-aura.is-on {
+  opacity: 1;
+}
+
+/* Film grain: a static, very faint noise over the page, the texture
+   layer modern editorial sites sit on. It costs nothing after first
+   paint (no animation), and hides entirely for visitors who ask for
+   reduced transparency. It sits under the loader and the toast
+   viewport (z-90 vs z-100) on purpose: system layers stay clean. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: var(--grain-o);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .grain {
+    display: none;
+  }
+}
+
+/* Focus dim (dim-siblings) was REMOVED on purpose: it worked through
+   opacity on peer cards, and an opacity below 1 on a frosted .lg
+   surface switches its backdrop-filter off and on mid-transition -
+   the glass visibly flickered whenever the pointer arrived or left a
+   group. The cards' material now stays untouched by every peer
+   interaction; hover feedback is each card's own lift, halo, and
+   spotlight. */
+
+/* Springy entrance for the back-to-top button, wearing the fog: it
+   pops in AND blooms its dissipating halo, the same materialization
+   vocabulary as every other glass surface. */
+.hud-pop {
+  animation:
+    pop-in 0.3s cubic-bezier(0.34, 1.4, 0.5, 1) both,
+    glass-fog 1.05s var(--ease-out) backwards;
+  /* The back-to-top button floats ALONE over raw fog - no card, no
+     rail beneath it - so the generic glass tint reads as a hole in the
+     background. It needs a denser fill and a brighter rim than panels
+     get (this rule sits after .lg and overrides its tint/border by
+     source order; a bg-* utility would lose to unlayered .lg).
+     --glass-rest matches, so the entry animation's fog settles into
+     exactly this fill instead of jumping at the end. */
+  --glass-rest: rgb(255 255 255 / 0.8);
+  background-color: rgb(255 255 255 / 0.8);
+  border-color: rgb(255 255 255 / 0.85);
+}
+
+.dark .hud-pop {
+  --glass-rest: rgb(32 24 42 / 0.62);
+  background-color: rgb(32 24 42 / 0.62);
+  border-color: rgb(255 255 255 / 0.32);
+}
+
+/* Reading-progress ring around the back-to-top button: a hairline SVG
+   circle whose stroke fills with brand as the visitor reads. The dash
+   offset is written inline from a passive rAF scroll listener (pure
+   paint, no filters, no layout), so the HUD control doubles as a
+   position gauge without costing anything while idle. */
+.ring-track {
+  stroke: var(--border);
+  opacity: 0.65;
+}
+
+.ring-fill {
+  stroke: var(--brand);
+  stroke-linecap: round;
+  /* A whisper of a transition keeps the ring smooth on fast wheels and
+     inertia scrolls without fighting the rAF updates. */
+  transition: stroke-dashoffset 0.15s linear;
+}
+
+/* ------------------------------------------------------------------ *
+ * Row spotlight: the list rows (project entries, skill groups) sit
+   directly on their parent glass with only a hover tint - this adds a
+   soft brand-tinted light that follows the pointer inside the row, the
+   non-glass echo of the .lg::before internal illumination. tiltGlass
+   already writes --spot-x / --spot-y on every pointermove, so this is
+   pure background-image + opacity: no filters, no JS, nothing to
+   composite expensively. Keyboard focus gets the same glow centered.
+ * ------------------------------------------------------------------ */
+.row-spot {
+  position: relative;
+}
+
+.row-spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    190px 100px at var(--spot-x, 50%) var(--spot-y, 50%),
+    var(--brand-soft),
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+  pointer-events: none;
+}
+
+.row-spot:hover::after,
+.row-spot:focus-visible::after {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .row-spot::after {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Arrival draws: the kicker's hairline ticks and the footer's hair
+   grow into place when their block enters (the arm/enter vocabulary
+   of Reveal - armed blocks hold the undrawn state, entering blocks
+   animate to full). No-JS and reduced-motion visitors never arm, so
+   for them the lines are simply there.
+ * ------------------------------------------------------------------ */
+.reveal.is-armed .kicker::before,
+.reveal.is-armed .kicker::after {
+  transform: scaleX(0);
+}
+
+.reveal.is-in .kicker::before {
+  transform-origin: right center;
+  /* `both`, not `backwards`: the armed base state is scaleX(0) and
+     is-armed never comes off, so a backwards-only fill would collapse
+     the tick back to nothing the moment the draw finished. Filling
+     forwards too is what keeps the drawn line on screen. */
+  animation: tick-draw 0.7s var(--ease-out) 0.15s both;
+}
+
+.reveal.is-in .kicker::after {
+  transform-origin: left center;
+  animation: tick-draw 0.7s var(--ease-out) 0.15s both;
+}
+
+footer.is-armed .footer-hair {
+  transform: scaleX(0);
+}
+
+footer.is-in .footer-hair {
+  transform-origin: center;
+  animation: tick-draw 0.9s var(--ease-out) 0.1s both;
+}
+
+@keyframes tick-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-pop {
+    animation: none;
+  }
+  html.js[data-app-ready] .reveal.is-in .skills-chip {
+    animation: none;
+  }
+  .cursor-aura {
+    display: none;
+  }
+}
+
+/* Quiet scrollbar that follows the theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+  border: 2px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* ------------------------------------------------------------------ *
+ * Konami easter egg (konami.tsx): entering the classic code unlocks
+ * an achievement toast and a brief rain of reward pixels. The toast
+ * deliberately drops the glass language for an 8-bit card: solid
+ * fill, hard 2px border, offset hard shadow, the one place on the
+ * page where the fog parts and a game pokes through.
+ * ------------------------------------------------------------------ */
+.pixel-card {
+  background-color: var(--background);
+  border: 2px solid var(--gold);
+  border-radius: 0;
+  /* The 8-bit offset shadow: solid black on light, solid violet on
+     dark, where a black shadow would vanish into the page. */
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 0.35);
+}
+
+.dark .pixel-card {
+  box-shadow: 4px 4px 0 rgb(255 82 102 / 0.45);
+}
+
+.ach-toast {
+  animation: ach-in 0.35s var(--ease-spring) both;
+}
+
+/* Pixel-caption voice: tiny caps with wide tracking (Arabic keeps
+   letter-spacing 0 through the global rule and gets a legibility
+   bump instead). */
+.font-pixel {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+html[lang="ar"] .font-pixel {
+  letter-spacing: 0;
+  font-size: 11px;
+}
+
+@keyframes ach-in {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+.reward-pixel {
+  position: fixed;
+  top: -16px;
+  z-index: 96;
+  pointer-events: none;
+  animation: pixel-fall 1.6s linear both;
+}
+
+@keyframes pixel-fall {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(105vh);
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ach-toast {
+    animation: none;
+  }
+  .reward-pixel {
+    display: none;
+  }
+}
