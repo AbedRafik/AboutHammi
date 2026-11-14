@@ -70,12 +70,6 @@ GITHUB_PAGES=1 npm run build
 
 The generated website is placed in the `out` directory.
 
-## Get in touch
-
-I welcome thoughtful ideas, questions, and opportunities to collaborate. You can find my contact links on the portfolio website.
-
-Thank you for visiting and taking the time to learn about my work.
-
 ---
 
 A special thank you to **Abed Rafik** for designing and building this portfolio for me, and for the time and care he put into bringing it to life. I truly appreciate his support.
